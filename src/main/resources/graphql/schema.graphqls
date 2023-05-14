@@ -1,0 +1,23 @@
+type Query{
+    allMovies: [Movie]
+    findOne(id:ID) : Movie
+}
+
+type Movie {
+    id: ID
+    title: String
+    rating: Rating
+    director: Director
+}
+
+type   Rating{
+    rating: String
+    star: String
+}
+
+type Director{
+    id: ID
+    firstName: String
+    lastName: String
+    movies: [Movie]
+}
