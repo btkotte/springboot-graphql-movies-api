@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Flux;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -18,8 +20,8 @@ public class MovieController {
     //@SchemaMapping(typeName = "Query", value = "allMovies")
     // Below annotation will do the same. But the method name should be same as the type definition in the schema file
     @QueryMapping
-    public List<Movie> allMovies() {
-        return movieRepository.findAll();
+    public Flux<Movie> allMovies() {
+        return Flux.fromIterable(() -> movieRepository.findAll().iterator());
     }
 
     @QueryMapping
